@@ -7,7 +7,7 @@ from matplotlib_venn import venn3, venn3_circles
 import matplotlib.patches as patches
 
 # import variables from db_cs230_connections_v3.py
-from db_cs230_connections_v3 import (
+from csc230_connections_data import (
     devon_sets,
     all_students,
     categories,
