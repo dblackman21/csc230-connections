@@ -1,0 +1,22 @@
+# first time using git for python, being safe
+
+# Virtual environments
+venv/
+.env
+env/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# IDE specific
+.vscode/
+.idea/
+
+#macOs
+.DS_Store
