@@ -7,7 +7,7 @@ from matplotlib_venn import venn3, venn3_circles
 import matplotlib.patches as patches
 
 # Read all three sheets
-xls = pd.ExcelFile('discrete projects/graphs/p8/sfsu_fall25_csc230_graph_project.xlsx')
+xls = pd.ExcelFile('sfsu_fall25_csc230_graph_project.xlsx')
 print(f"Sheet names: {xls.sheet_names}")
 
 # Extract my connections from each sheet
