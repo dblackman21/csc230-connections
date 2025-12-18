@@ -21,10 +21,10 @@ for sheet in sheet_names:
     print(f"\n{sheet}:")
     print(devon_sets[sheet])
 
-# Get all unique students
-all_students = set()
-for s in devon_sets.values():
-    all_students.update(s)
+# Get ALL unique students from the spreadsheet (including those not connected to Devon)
+df_all = pd.read_excel(xls, sheet_name=sheet_names[0], index_col=0)
+all_students = set(df_all.index.tolist())
+all_students.discard('Devon')  # Remove Devon from the set
 
 # Categorize students by their relationships using bit notation
 categories = {}
@@ -53,13 +53,13 @@ for category in sorted(categories.keys()):
 # Bit order: A, B, C
 bit_to_category = {
     '100': 'An_Bn_C',   # only A
-    '010': '_AnBn_C',    # only B
-    '001': '_An_BnC',    # only C
-    '110': 'AnB_nC',     # A and B, not C
-    '011': '_AnBnC',     # B and C, not A
-    '101': 'An_BnC',     # A and C, not B
-    '111': 'AnBnC',      # all three
-    '000': '_An_Bn_C'    # none
+    '010': '_AnBn_C',   # only B
+    '001': '_An_BnC',   # only C
+    '110': 'AnBn_C',    # A and B, not C (fixed typo)
+    '011': '_AnBnC',    # B and C, not A
+    '101': 'An_BnC',    # A and C, not B
+    '111': 'AnBnC',     # all three
+    '000': '_An_Bn_C'   # none
 }
 
 # Count students in each bit category
