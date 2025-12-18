@@ -20,7 +20,7 @@ from csc230_connections_data import (
 plt.figure(figsize=(10, 8))
 
 # create venn3 diagram
-v = venn3(subsets=(1, 1, 1, 1, 1, 1, 1), set_labels=('A', 'B', 'C'))
+v = venn3(subsets=(1, 1, 1, 1, 1, 1, 1), set_labels=('A: Know Name', 'B: Helped in Class', 'C: Talked Outside Class'))
 
 # circle styling
 venn3_circles(subsets=(1, 1, 1, 1, 1, 1, 1), linestyle='solid')
@@ -35,7 +35,7 @@ for bit_id in valid_bit_ids:
         if label_obj:
             names_str = '\n'.join(students)
             label_obj.set_text(names_str)
-            label_obj.set_fontsize(7)
+            label_obj.set_fontsize(12) # adjust font size as needed, larger for better readability
 
 
 # handling 000 case separately
