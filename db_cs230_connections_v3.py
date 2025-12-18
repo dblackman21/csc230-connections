@@ -16,8 +16,14 @@ from csc230_connections_data import (
     sheet_names
 )
 
+# setting fig size
+plt.figure(figsize=(10, 8))
+
 # create venn3 diagram
 v = venn3(subsets=(1, 1, 1, 1, 1, 1, 1), set_labels=('A', 'B', 'C'))
+
+# circle styling
+venn3_circles(subsets=(1, 1, 1, 1, 1, 1, 1), linestyle='solid')
 
 # exclude label for 000 since it is not shown in venn3 natively
 valid_bit_ids = ['100', '010', '001', '110', '101', '011', '111']
@@ -38,10 +44,13 @@ if bit_students.get('000'):
     valid_students = [str(s) for s in bit_students['000'] if isinstance(s, str)]
     if valid_students:
         outside_students = '\n'.join(valid_students)
-        plt.text(0.02, 0.98, f"Outside all sets (000):\n{outside_students}", 
-                 transform=plt.gca().transAxes, fontsize=8, verticalalignment='top',
+        plt.text(1.1, 0.02, f"Outside all sets (000):\n{outside_students}", 
+                 transform=plt.gca().transAxes, fontsize=8, verticalalignment='bottom',
+                 horizontalalignment='right',
                  bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
 
+# reference for adding text outside venn diagram
+# plt.text(0.5, -0.5, f"{'$'}{int(z_z_z):,}", ha='left', va='center', fontsize=6)
 """  old code to set labels with student counts
 v.get_label_by_id('100').set_text(f"{bit_counts['100']}")
 v.get_label_by_id('010').set_text(f"{bit_counts['010']}")
@@ -53,4 +62,5 @@ v.get_label_by_id('111').set_text(f"{bit_counts['111']}")
 """
 
 plt.title("Devon's Connections in CSC 230")
+plt.tight_layout()
 plt.show()
