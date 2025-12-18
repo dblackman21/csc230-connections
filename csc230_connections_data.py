@@ -26,6 +26,9 @@ df_all = pd.read_excel(xls, sheet_name=sheet_names[0], index_col=0)
 all_students = set(df_all.index.tolist())
 all_students.discard('Devon')  # Remove Devon from the set
 
+# Filter out NaN values
+all_students = {s for s in all_students if pd.notna(s)}
+
 # Categorize students by their relationships using bit notation
 categories = {}
 

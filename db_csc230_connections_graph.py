@@ -6,7 +6,7 @@ import pandas as pd
 from matplotlib_venn import venn3, venn3_circles
 import matplotlib.patches as patches
 
-# import variables from db_cs230_connections_v3.py
+# import variables from csc230_connections_data.py
 from csc230_connections_data import (
     devon_sets,
     all_students,
@@ -33,11 +33,28 @@ for sheet in sheet_names:
     for student in connections:
         G.add_edge('Devon', student)
 
-# Define positions using spring layout for better visualization
+# Define positions using circular layout
 pos = nx.spring_layout(G, seed=seed)
 
+# Place Devon in the center
+pos['Devon'] = np.array([0, 0])
+
+# Place other students in a circle around Devon
+# Filter out NaN and non-string values
+valid_students = [s for s in all_students if isinstance(s, str)]
+num_students = len(valid_students)
+radius = 2
+for i, student in enumerate(sorted(valid_students)):
+    angle = 2 * np.pi * i / num_students
+    pos[student] = np.array([radius * np.cos(angle), radius * np.sin(angle)])
+
 # Draw the graph
-nx.draw(G, pos, with_labels=True, node_color='lightblue', node_size=500, font_size=10)
+plt.figure(figsize=(9, 9))
+nx.draw_networkx_nodes(G, pos, node_color='lightgreen', node_size=500)
+nx.draw_networkx_labels(G, pos, font_size=10)
+nx.draw_networkx_edges(G, pos, width=1.5)
+
 plt.title("Devon's Connections Graph")
+plt.axis('off')
 plt.margins(0.1)
 plt.show()
