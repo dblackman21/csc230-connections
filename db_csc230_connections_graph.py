@@ -14,7 +14,8 @@ from csc230_connections_data import (
     bit_students,
     bit_counts,
     labels,
-    sheet_names
+    sheet_names,
+    bit_weights
 )
 
 seed = 0

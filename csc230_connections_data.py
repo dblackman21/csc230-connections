@@ -59,6 +59,7 @@ bit_to_category = {
     '011': '_AnBnC',     # B and C, not A
     '101': 'An_BnC',     # A and C, not B
     '111': 'AnBnC',      # all three
+    '000': '_An_Bn_C'    # none
 }
 
 # Count students in each bit category
@@ -70,6 +71,7 @@ bit_counts = {
     '011': len(categories.get('_AnBnC', [])),
     '101': len(categories.get('An_BnC', [])),
     '111': len(categories.get('AnBnC', [])),
+    '000': len(categories.get('_An_Bn_C', [])),
 }
 
 # Get student names for each bit category
@@ -81,6 +83,18 @@ bit_students = {
     '011': categories.get('_AnBnC', []),
     '101': categories.get('An_BnC', []),
     '111': categories.get('AnBnC', []),
+    '000': categories.get('_An_Bn_C', []),
+}
+
+bit_weights = {
+    '111': 8,    # All three connections - most prominent
+    '110': 5,    # Knows name + helped in class
+    '101': 6,    # Knows name + talked outside
+    '011': 7,    # Helped + talked outside
+    '100': 2,    # Only knows name
+    '010': 3,    # Only helped in class
+    '001': 4,    # Only talked outside
+    '000': 1     # No connections - least prominent
 }
 
 print("\n\n=== BIT NOTATION COUNTS ===")
