@@ -24,6 +24,9 @@ for sheet in sheet_names:
 # Get ALL unique students from the spreadsheet (including those not connected to Devon)
 df_all = pd.read_excel(xls, sheet_name=sheet_names[0], index_col=0)
 all_students = set(df_all.index.tolist())
+
+true_all_students = all_students # needed for class graph
+
 all_students.discard('Devon')  # Remove Devon from the set
 
 # Filter out NaN values
