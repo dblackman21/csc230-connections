@@ -8,7 +8,7 @@ import matplotlib.patches as patches
 
 # import variables from csc230_connections_data.py
 from csc230_connections_data import (
-    all_students,
+    true_all_students,
     sheet_names,
     bit_weights,
     bit_to_category,
@@ -21,7 +21,7 @@ np.random.seed(seed)
 G = nx.Graph()
 
 # Add nodes for each student
-valid_students = [s for s in all_students if isinstance(s, str)]
+valid_students = [s for s in true_all_students if isinstance(s, str)]
 for student in valid_students:
     G.add_node(student)
 
