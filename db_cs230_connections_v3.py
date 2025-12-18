@@ -34,10 +34,13 @@ for bit_id in valid_bit_ids:
 
 # handling 000 case separately
 if bit_students.get('000'):
-    outside_students = '\n'.join(bit_students['000'])
-    plt.text(0.02, 0.98, f"Outside all sets (000):\n{outside_students}", 
-             transform=plt.gca().transAxes, fontsize=8, verticalalignment='top',
-             bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
+    # Filter out NaN and non-string values
+    valid_students = [str(s) for s in bit_students['000'] if isinstance(s, str)]
+    if valid_students:
+        outside_students = '\n'.join(valid_students)
+        plt.text(0.02, 0.98, f"Outside all sets (000):\n{outside_students}", 
+                 transform=plt.gca().transAxes, fontsize=8, verticalalignment='top',
+                 bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
 
 """  old code to set labels with student counts
 v.get_label_by_id('100').set_text(f"{bit_counts['100']}")
